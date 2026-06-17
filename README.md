@@ -1,10 +1,14 @@
 # mikrotik-vpn-triangle
 
-This is a reenactment of a small enterprise setup for connecting three remote offices served by a handful of different (plus failover) ISPs and WAN connection types into a more durable layer 3 IPSEC "VPN triange" using  Mikrotik routers.   
+This is a reenactment of a small enterprise setup for connecting three remote offices served by a handful of different (plus failover) ISPs and WAN connection types into a more durable layer 3 IPSEC "VPN triange" using  Mikrotik routers.  
+
 It's not easily scalable but a former client (being overly conservative) insisted on this setup and concept using hardware they already bought, but had no one to set it up for them at that time. I'd happily have used an open source mesh VPN solution between sites and L2TP/IPSec, Wireguard or others with cross-platform VPN client support for "road warriors" instead and a bit more powerful hardware (especially hw crypto-wise).  
+
 The main reason for the upgrade was that the client's previously existing off-the-shelf dual WAN routers had issues (bugs?) with daily DHCP renews initiated by some ISPs and intermittent site-to-site VPN availability.  
-I was also involved in the progress of aiding the development, merging and moving their homegrown on-premise software stack to cloud hosts, consultation on local VoIP PBX connection issues plus solving the resulting cloud printing problem. In the end these cloud services doubled as an achor point for reachability monitoring done as connection failover checks from within each router. It could have been done simply by only monitoring ISP gateway addresses too, but that's not very realistic, because it doesn't take an extra failure mode into account where the gateway still responds while public hosts don't.   
-*Exported using the command `export file=<filename.rsc> hide-sensitive` to hide security sensitive data.*
+
+I was also involved in the progress of aiding the development, merging and moving their homegrown on-premise software stack to cloud hosts, consultation on local VoIP PBX connection issues plus solving the resulting cloud printing problem. In the end these cloud services doubled as an achor point for reachability monitoring done as connection failover checks from within each router. It could have been done simply by only monitoring ISP gateway addresses too, but that's not very realistic, because it doesn't take an extra failure mode into account where the gateway still responds while public hosts don't.  
+
+*Exported using the command `export file=<filename.rsc> hide-sensitive` to hide security sensitive data.*  
 
 Key requirements were:
 - Cheap
@@ -25,7 +29,7 @@ Features I added:
 ![Layout](docs/figure1.png "Network overview diagram")
 
 #### Detailed network environment 
-*Note: the reenactment configurations use "fake" public IP addresses, represented using IETF/IANA addresses reserved for documentation purposes.*
+*Note: the reenactment configurations use "fake" public IP addresses, represented using IETF/IANA addresses reserved for documentation purposes.*  
 
 - cloud service1 (ERP): 198.51.100.30: (TEST-NET-2)
 - cloud service2 (webshop/landing page): 198.51.100.40 is geographically closer and also getting reachability monitored for WAN failover checks by each router (TEST-NET-2)
